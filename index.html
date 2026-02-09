@@ -7,19 +7,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-      html,
+      html {
+        height: 100%;
+        overflow: hidden;
+        background: linear-gradient(to bottom, #fce7f3, #fbcfe8, #f9a8d4);
+        background-attachment: fixed;
+      }
+
       body {
         height: 100vh;
         width: 100%;
         overflow: hidden;
-        position: fixed;
+        margin: 0;
+        padding: 0;
         overscroll-behavior: none;
         -webkit-overflow-scrolling: touch;
-      }
-
-      body {
-        background: linear-gradient(to bottom, #fce7f3, #fbcfe8, #f9a8d4);
-        background-attachment: fixed;
       }
 
       @keyframes floatUp {
