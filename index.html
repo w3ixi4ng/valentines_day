@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Valentine's Day</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      @keyframes floatUp {
+        0% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-120vh);
+          opacity: 0;
+        }
+      }
+
+      .heart {
+        position: absolute;
+        bottom: -10vh;
+        animation: floatUp linear infinite;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gradient-to-b from-pink-100 via-pink-200 to-pink-300 overflow-hidden"
+  >
+    <div
+      class="relative z-10 min-h-screen flex items-center justify-center px-6"
+    >
+      <div
+        class="bg-white/80 backdrop-blur-md rounded-2xl shadow-xl p-10 max-w-xl text-center"
+      >
+        <div id="before">
+          <div class="flex justify-center mt-2">
+            <img
+              src="imgs/flowers.gif"
+              alt="Valentine GIF"
+              class="w-48 h-48 object-contain"
+            />
+          </div>
+
+          <h1 class="text-4xl font-bold text-pink-600 mb-6">
+            Happy Valentine's Day 💗
+          </h1>
+          <p class="text-lg font-bold text-gray-700 leading-relaxed">
+            Hi Baby, Will You Be My Valentines?
+          </p>
+          <p
+            id="noMsg"
+            class="text-lg text-gray-700 leading-relaxed fw-bold"
+          ></p>
+          <div class="mt-8 flex justify-center gap-6">
+            <button
+              class="px-6 py-3 bg-pink-100 text-gray-700 rounded-xl font-semibold hover:bg-pink-200"
+              id="yesBtn"
+            >
+              yes <span class="align-middle">💖</span>
+            </button>
+            <button
+              class="px-6 py-3 bg-gray-300 text-gray-700 rounded-xl font-semibold hover:bg-gray-400"
+              id="noBtn"
+            >
+              no <span class="align-middle">💔</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="after" class="hidden">
+          <div class="flex justify-center mt-2">
+            <img
+              src="imgs/kiss.gif"
+              alt="Valentine GIF"
+              class="w-48 h-48 object-contain"
+            />
+          </div>
+
+          <p class="text-pink-600 text-2xl font-bold">
+            Yay! You said YES! 💖💗
+          </p>
+        </div>
+
+        <p class="mt-6 text-pink-500 font-semibold">Made with love 💌</p>
+
+        <!-- <audio id="bgMusic" autoplay loop>
+          <source src="audio/loveconfession.mp3" type="audio/mpeg" />
+        </audio> -->
+      </div>
+    </div>
+    
+    <img src="imgs/GitHub.svg" alt="github" class="w-10" />
+
+    <script>
+      const colors = ["💗", "💖", "💘", "💞", "💕"];
+
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerText = colors[Math.floor(Math.random() * colors.length)];
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 20 + 16 + "px";
+        heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 7000);
+      }
+      setInterval(createHeart, 300);
+
+      const noBtn = document.getElementById("noBtn");
+      const noMsg = document.getElementById("noMsg");
+      const noMessages = [
+        "Are you sure? 🥺",
+        "Oops… that's not the answer I wanted 💔",
+        "Try again… I believe in you! 💖",
+        "No way! Come on, say Yes 😏",
+        "You can't resist me forever 💗",
+        "Even a 'No' can't stop my love for you 💘",
+        "I'll wait… but I hope it's a Yes soon 🥰",
+        "Every 'No' just makes me love you more 💖",
+        "Your heart belongs to me anyway 💞",
+        "Don't worry, I'll keep sending love 💌",
+        "You clicked No… but I still love you! 😂",
+        "Are you trying to break my heart? 💔😅",
+        "No? Haha, I didn't think so 😏",
+      ];
+
+      function moveNoButton() {
+        const x = Math.random() * 40;
+        const y = Math.random() * 40;
+        const index = Math.floor(Math.random() * noMessages.length);
+        noBtn.style.position = "absolute";
+        noBtn.style.left = x + "vw";
+        noBtn.style.top = y + "vh";
+        noMsg.innerText = noMessages[index];
+      }
+      noBtn.addEventListener("mouseenter", moveNoButton);
+      noBtn.addEventListener("click", moveNoButton);
+      noBtn.addEventListener("touchstart", moveNoButton);
+
+      const music = document.getElementById("bgMusic");
+      document.body.addEventListener(
+        "click",
+        () => {
+          music.play();
+        },
+        { once: true },
+      );
+
+      const yesBtn = document.getElementById("yesBtn");
+      const beforeDiv = document.getElementById("before");
+      const afterDiv = document.getElementById("after");
+
+      yesBtn.addEventListener("click", () => {
+        beforeDiv.classList.add("hidden");
+        afterDiv.classList.remove("hidden");
+      });
+    </script>
+  </body>
+</html>
