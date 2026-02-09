@@ -12,7 +12,6 @@
         height: 100%;
         min-height: 100vh;
         overflow: hidden;
-        position: fixed;
         width: 100%;
         overscroll-behavior: none;
         -webkit-overflow-scrolling: touch;
@@ -181,12 +180,11 @@
       🔊
     </button>
 
-    <a href="https://github.com/w3ixi4ng/valentines_day"
+    <a href="https://github.com/w3ixi4ng/valentines_day" target="_blank"
       ><img
         src="imgs/GitHub.svg"
         alt="github"
-        class="w-8 sm:w-10 fixed bottom-4 right-4 z-50 cursor-pointer hover:scale-110 active:scale-95 transition-transform"
-        target="_blank"
+        class="w-8 sm:w-10 fixed bottom-4 right-4 z-[100] cursor-pointer hover:scale-110 active:scale-95 transition-transform"
     /></a>
 
     <script>
@@ -228,16 +226,12 @@
       ];
 
       function moveNoButton() {
-        const isMobile = window.innerWidth < 640;
-        const maxX = isMobile ? 50 : 40;
-        const maxY = isMobile ? 50 : 40;
-        const x = Math.random() * maxX;
-        const y = Math.random() * maxY;
-        const index = Math.floor(Math.random() * noMessages.length);
-        noBtn.style.position = "absolute";
+        const x = 10 + Math.random() * 40;
+        const y = 15 + Math.random() * 40;
+        noBtn.style.position = "fixed";
         noBtn.style.left = x + "vw";
         noBtn.style.top = y + "vh";
-        noMsg.innerText = noMessages[index];
+        noMsg.innerText = noMessages[Math.floor(Math.random() * noMessages.length)];
       }
       noBtn.addEventListener("mouseenter", moveNoButton);
       noBtn.addEventListener("click", moveNoButton);
