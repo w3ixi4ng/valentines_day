@@ -2,10 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Valentine's Day</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
+      html,
+      body {
+        height: 100%;
+        min-height: 100vh;
+      }
+
+      body {
+        background: linear-gradient(to bottom, #fce7f3, #fbcfe8, #f9a8d4);
+        background-attachment: fixed;
+      }
+
       @keyframes floatUp {
         0% {
           transform: translateY(0);
@@ -23,45 +35,91 @@
         animation: floatUp linear infinite;
         pointer-events: none;
       }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      .typewriter {
+        overflow: hidden;
+        border-right: 0.15em solid #ec4899;
+        white-space: nowrap;
+        margin: 0 auto;
+        animation: typing 2s steps(30, end), blink 0.75s step-end infinite;
+        display: inline-block;
+        max-width: 100%;
+      }
+
+      @keyframes blink {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: #ec4899;
+        }
+      }
+
+      @keyframes confettiFall {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(720deg);
+          opacity: 0;
+        }
+      }
+
+      .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        z-index: 999;
+        animation: confettiFall linear forwards;
+      }
     </style>
   </head>
-  <body
-    class="bg-gradient-to-b from-pink-100 via-pink-200 to-pink-300 overflow-hidden"
-  >
+  <body class="overflow-x-hidden">
     <div
-      class="relative z-10 min-h-screen flex items-center justify-center px-6"
+      class="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 py-8"
     >
       <div
-        class="bg-white/80 backdrop-blur-md rounded-2xl shadow-xl p-10 max-w-xl text-center"
+        class="bg-white/80 backdrop-blur-md rounded-2xl shadow-xl p-6 sm:p-10 max-w-xl w-full text-center"
       >
         <div id="before">
           <div class="flex justify-center mt-2">
             <img
               src="imgs/flowers.gif"
               alt="Valentine GIF"
-              class="w-48 h-48 object-contain"
+              class="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 object-contain"
             />
           </div>
 
-          <h1 class="text-4xl font-bold text-pink-600 mb-6">
+          <h1 class="text-3xl sm:text-4xl font-bold text-pink-600 mb-4 sm:mb-6">
             Happy Valentine's Day 💗
           </h1>
-          <p class="text-lg font-bold text-gray-700 leading-relaxed">
+          <p class="text-base sm:text-lg font-bold text-gray-700 leading-relaxed">
             Hi Baby, Will You Be My Valentines?
           </p>
           <p
             id="noMsg"
-            class="text-lg text-gray-700 leading-relaxed fw-bold"
+            class="text-base sm:text-lg text-gray-700 leading-relaxed fw-bold min-h-[1.5rem]"
           ></p>
-          <div class="mt-8 flex justify-center gap-6">
+          <div class="mt-6 sm:mt-8 flex justify-center gap-4 sm:gap-6">
             <button
-              class="px-6 py-3 bg-pink-100 text-gray-700 rounded-xl font-semibold hover:bg-pink-200"
+              class="px-5 py-3 sm:px-6 sm:py-3 bg-pink-100 text-gray-700 rounded-xl font-semibold hover:bg-pink-200 active:scale-95 transition-transform text-base sm:text-lg"
               id="yesBtn"
             >
               yes <span class="align-middle">💖</span>
             </button>
             <button
-              class="px-6 py-3 bg-gray-300 text-gray-700 rounded-xl font-semibold hover:bg-gray-400"
+              class="px-5 py-3 sm:px-6 sm:py-3 bg-gray-300 text-gray-700 rounded-xl font-semibold hover:bg-gray-400 active:scale-95 transition-transform text-base sm:text-lg"
               id="noBtn"
             >
               no <span class="align-middle">💔</span>
@@ -74,16 +132,16 @@
             <img
               src="imgs/kiss.gif"
               alt="Valentine GIF"
-              class="w-48 h-48 object-contain"
+              class="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 object-contain"
             />
           </div>
 
-          <p class="text-pink-600 text-2xl font-bold">
-            Yay! You said YES! 💖💗
+          <p class="text-pink-600 text-xl sm:text-2xl font-bold">
+            <span id="typewriterText" class="typewriter">Yay! You said YES! 💖💗</span>
           </p>
         </div>
 
-        <p class="mt-6 text-pink-500 font-semibold">Made with love 💌</p>
+        <p class="mt-4 sm:mt-6 text-sm sm:text-base text-pink-500 font-semibold">Made with love 💌</p>
 
         <audio id="bgMusic" autoplay loop>
           <source src="audio/loveconfession.mp3" type="audio/mpeg" />
@@ -93,7 +151,7 @@
 
     <button
       id="muteBtn"
-      class="fixed top-4 right-4 z-50 w-12 h-12 bg-white/80 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center cursor-pointer hover:scale-110 transition-transform text-2xl"
+      class="fixed top-6 right-6 md:top-4 md:right-4 z-50 w-14 h-14 md:w-12 md:h-12 bg-white/80 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center cursor-pointer hover:scale-110 active:scale-95 transition-transform text-2xl md:text-xl"
       title="Toggle music"
     >
       🔊
@@ -103,7 +161,8 @@
       ><img
         src="imgs/GitHub.svg"
         alt="github"
-        class="w-10 fixed bottom-4 right-4 z-50 cursor-pointer hover:scale-110 transition-transform"
+        class="w-8 sm:w-10 fixed bottom-4 right-4 z-50 cursor-pointer hover:scale-110 active:scale-95 transition-transform"
+        target="_blank"
     /></a>
 
     <script>
@@ -145,8 +204,11 @@
       ];
 
       function moveNoButton() {
-        const x = Math.random() * 40;
-        const y = Math.random() * 40;
+        const isMobile = window.innerWidth < 640;
+        const maxX = isMobile ? 50 : 40;
+        const maxY = isMobile ? 50 : 40;
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
         const index = Math.floor(Math.random() * noMessages.length);
         noBtn.style.position = "absolute";
         noBtn.style.left = x + "vw";
@@ -170,9 +232,33 @@
       const beforeDiv = document.getElementById("before");
       const afterDiv = document.getElementById("after");
 
+      function createConfetti() {
+        const colors = ["#ff69b4", "#ff1493", "#ffc0cb", "#ffb6c1", "#ff6b9d", "#c71585"];
+        const confettiCount = 100;
+
+        for (let i = 0; i < confettiCount; i++) {
+          setTimeout(() => {
+            const confetti = document.createElement("div");
+            confetti.classList.add("confetti");
+            confetti.style.left = Math.random() * 100 + "vw";
+            confetti.style.top = "-10px";
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDuration = Math.random() * 2 + 3 + "s";
+            confetti.style.animationDelay = "0s";
+
+            document.body.appendChild(confetti);
+
+            setTimeout(() => {
+              confetti.remove();
+            }, 5000);
+          }, i * 30);
+        }
+      }
+
       yesBtn.addEventListener("click", () => {
         beforeDiv.classList.add("hidden");
         afterDiv.classList.remove("hidden");
+        createConfetti();
       });
 
       const muteBtn = document.getElementById("muteBtn");
