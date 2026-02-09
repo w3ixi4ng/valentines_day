@@ -85,13 +85,26 @@
 
         <p class="mt-6 text-pink-500 font-semibold">Made with love 💌</p>
 
-        <!-- <audio id="bgMusic" autoplay loop>
+        <audio id="bgMusic" autoplay loop>
           <source src="audio/loveconfession.mp3" type="audio/mpeg" />
-        </audio> -->
+        </audio>
       </div>
     </div>
-    
-    <img src="imgs/GitHub.svg" alt="github" class="w-10" />
+
+    <button
+      id="muteBtn"
+      class="fixed top-4 right-4 z-50 w-12 h-12 bg-white/80 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center cursor-pointer hover:scale-110 transition-transform text-2xl"
+      title="Toggle music"
+    >
+      🔊
+    </button>
+
+    <a href="https://github.com/w3ixi4ng/valentines_day"
+      ><img
+        src="imgs/GitHub.svg"
+        alt="github"
+        class="w-10 fixed bottom-4 right-4 z-50 cursor-pointer hover:scale-110 transition-transform"
+    /></a>
 
     <script>
       const colors = ["💗", "💖", "💘", "💞", "💕"];
@@ -160,6 +173,15 @@
       yesBtn.addEventListener("click", () => {
         beforeDiv.classList.add("hidden");
         afterDiv.classList.remove("hidden");
+      });
+
+      const muteBtn = document.getElementById("muteBtn");
+      let isMuted = false;
+
+      muteBtn.addEventListener("click", () => {
+        isMuted = !isMuted;
+        music.muted = isMuted;
+        muteBtn.innerText = isMuted ? "🔇" : "🔊";
       });
     </script>
   </body>
